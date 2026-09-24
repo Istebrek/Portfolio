@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+
+<div class="container-fluid p-0">
+    <div class="bg-black min-vh-100 p-0 m-0 d-flex flex-column">
+        <header class="p-3 bg-dark text-light">
+            <div>
+                <img src="images/logo.svg" class="rounded-circle bg-white" style="width:40px; height:40px;" />
+                @* <h1 class="h3 m-0 text-center">Welcome to Istebrek's !</h1> *@
+            </div>
+        </header>
+
+        <main class="bg-white rounded-5 flex-fill overflow-auto">
+            <article class="content p-4">
+                @Body
+            </article>
+        </main>
+    </div>
+
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

@@ -1,0 +1,31 @@
+﻿@rendermode InteractiveServer
+@page "/"
+@using Shared.Lists
+@using Shared.Models
+@using UI.Services
+
+
+
+<PageTitle>Istebrek's Portfolio</PageTitle>
+<div>
+    @foreach(var summary in projectSummaries)
+    {
+        @summary.Description
+        @summary.Id
+    }
+</div>
+
+@code {
+    [Inject]
+    private IProjectService? ProjectService { get; set; }
+    private List<ProjectSummaryDto> projectSummaries { get; set; } = [];
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            projectSummaries = await ProjectService!.GetAllSummaries(Language.Swedish);
+            StateHasChanged();
+        }
+    }
+}
