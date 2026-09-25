@@ -1,0 +1,65 @@
+@implements IDisposable
+
+<button class="btn py-1" 
+        @onclick="ChangeLanguage"
+        style="background-color: #f89b82 !important; font-size: x-small; font-weight: bold;"
+        title="@ButtonTitle" >
+    <i class="bi bi-globe2 me-1 fs-8" style="vertical-align: middle;"></i>
+    <span style="vertical-align: middle;">
+        @(SelectedLanguage.LanguageDisplay())
+    </span>
+</button>
+
+@code {
+    [Inject]
+    public IStateHandler? StateHandler { get; set; }
+
+    [Inject]
+    public IListHandler? ListHandler { get; set; }
+
+    private Language SelectedLanguage { get; set; } = Language.Swedish;
+    private string ButtonTitle { get; set; } = "Change to EN";
+
+    protected override void OnInitialized()
+    {
+        StateHandler!.OnChange += StateHasChanged;
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await StateHandler!.InitializeAsync();
+            SelectedLanguage = StateHandler.CurrentLanguage;
+            ButtonTitle = SelectedLanguage == Language.Swedish ? "Change to English" : "Byt till Svenska";
+            StateHasChanged();
+        }
+    }
+
+    public async Task ChangeLanguage()
+    {
+        switch (SelectedLanguage) 
+        {
+            case Language.Swedish:
+                await StateHandler!.SelectLanguage(Language.English);
+                ButtonTitle = "Byt till Svenska";
+                break;
+            case Language.English:
+                await StateHandler!.SelectLanguage(Language.Swedish);
+                ButtonTitle = "Change to English";
+                break;
+            default:
+                await StateHandler!.SelectLanguage(Language.Swedish);
+                ButtonTitle = "Change to English";
+                break;
+        }
+
+        SelectedLanguage = StateHandler.CurrentLanguage;
+    }
+
+
+    public void Dispose() 
+    {
+        StateHandler!.OnChange -= StateHasChanged;
+    }
+}

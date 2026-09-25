@@ -1,8 +1,6 @@
 ﻿@rendermode InteractiveServer
+@implements IDisposable
 @page "/"
-@using Shared.Lists
-@using Shared.Models
-@using UI.Services
 
 
 
@@ -17,15 +15,37 @@
 
 @code {
     [Inject]
-    private IProjectService? ProjectService { get; set; }
+    private IStateHandler? StateHandler { get; set; }
+
+    [Inject]
+    private IListHandler? ListHandler { get; set; }
+
     private List<ProjectSummaryDto> projectSummaries { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        StateHandler!.OnChange += StateHasChanged;
+        ListHandler!.OnChange += SetLists;
+    }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            projectSummaries = await ProjectService!.GetAllSummaries(Language.Swedish);
+            SetLists();
             StateHasChanged();
         }
+    }
+
+    public void SetLists()
+    {
+        projectSummaries = ListHandler!.ProjectSummaries ?? [];
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        StateHandler!.OnChange -= StateHasChanged;
+        ListHandler!.OnChange -= StateHasChanged;
     }
 }
