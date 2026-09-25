@@ -1,5 +1,6 @@
 using UI.Components;
 using UI.Extensions;
+using UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,9 @@ builder.Services.AddClients(builder.Configuration);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<IStateHandler, StateHandler>();
+builder.Services.AddScoped<IListHandler, ListHandler>();
 
 var app = builder.Build();
 
