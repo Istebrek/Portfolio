@@ -14,5 +14,11 @@ public static class DisplayExtension
         return attr?.Description ?? skill.ToString();
     }
 
-    //use: in blazor when iterating over skills: var skill in skills @skill.SkillDisplay()
+    public static string LanguageDisplay(this Language language)
+    {
+        var field = language.GetType().GetField(language.ToString());
+        var attr = field?.GetCustomAttribute<DescriptionAttribute>();
+
+        return attr?.Description ?? language.ToString();
+    }
 }
