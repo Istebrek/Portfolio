@@ -7,7 +7,7 @@ using MongoDB.Bson;
 
 namespace Application.Services;
 
-public class ProjectService(IRepository<Project> repo) : IEntityService<Project>, ISummaryDtoService<ProjectSummaryDto>, IDetailsDtoService<ProjectDetailsDto>
+public class ProjectService(IRepository<Project> repo) : IEntityService<Project>, ISummaryDtoService<ProjectSummaryDto>, IDetailsDtoService<ProjectDetailDto>
 {
     public void Add(Project project)
     {
@@ -47,7 +47,7 @@ public class ProjectService(IRepository<Project> repo) : IEntityService<Project>
 
 
 
-    public async Task<ProjectDetailsDto?> GetDetailsByIdAsync(string id, Language language)
+    public async Task<ProjectDetailDto?> GetDetailsByIdAsync(string id, Language language)
     {
         var project = await repo.GetByIdAsync(id);
 
@@ -59,7 +59,7 @@ public class ProjectService(IRepository<Project> repo) : IEntityService<Project>
         return MapToDetails(project, language);
     }
 
-    public async Task<List<ProjectDetailsDto>> GetAllDetailsAsync(Language language)
+    public async Task<List<ProjectDetailDto>> GetAllDetailsAsync(Language language)
     {
         var projects = await repo.GetAllAsync();
         return projects.Select(project => MapToDetails(project, language)).ToList();
@@ -67,12 +67,12 @@ public class ProjectService(IRepository<Project> repo) : IEntityService<Project>
 
 
 
-    private ProjectDetailsDto MapToDetails(Project project, Language language)
+    private ProjectDetailDto MapToDetails(Project project, Language language)
     {
         var translation = project.Translations.FirstOrDefault(x => x.Language == language)
             ?? project.Translations.First(x => x.Language == Language.English);
 
-        return new ProjectDetailsDto(
+        return new ProjectDetailDto(
             project.Id.ToString(),
             translation.Title,
             translation.Description,

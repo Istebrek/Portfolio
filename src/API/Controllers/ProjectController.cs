@@ -12,13 +12,31 @@ namespace API.Controllers;
 public class ProjectController
     (IEntityService<Project> entityService, 
     ISummaryDtoService<ProjectSummaryDto> summaryService, 
-    IDetailsDtoService<ProjectDetailsDto> detailsService) 
+    IDetailsDtoService<ProjectDetailDto> detailsService) 
     : ControllerBase
 {
     [HttpGet("summaries")]
     public async Task<IActionResult> GetAllSummaries([FromQuery] Language language)
     {
         return Ok(await summaryService.GetAllSummariesAsync(language));
+    }
+
+    [HttpGet("details")]
+    public async Task<IActionResult> GetAllDetails([FromQuery] Language language)
+    {
+        return Ok(await detailsService.GetAllDetailsAsync(language));
+    }
+
+    [HttpGet("summary/{id}")]
+    public async Task<IActionResult> GetSummaryById(string id, [FromQuery] Language language)
+    {
+        return Ok(await summaryService.GetSummaryByIdAsync(id, language));
+    }
+
+    [HttpGet("detail/{id}")]
+    public async Task<IActionResult> GetDetailById(string id, [FromQuery] Language language)
+    {
+        return Ok(await detailsService.GetDetailsByIdAsync(id, language));
     }
 
     [HttpPost]

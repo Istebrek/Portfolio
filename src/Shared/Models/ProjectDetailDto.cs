@@ -2,7 +2,7 @@ using Shared.Lists;
 
 namespace Shared.Models;
 
-public record ProjectDetailsDto(
+public record ProjectDetailDto(
     string Id,
     string Title,
     string? Description,

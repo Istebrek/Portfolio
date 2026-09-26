@@ -15,7 +15,7 @@ public static class ApplicationServiceCollectionExtensions
             new ProjectService(sp.GetRequiredService<IRepository<Project>>()));
         services.AddScoped<ISummaryDtoService<ProjectSummaryDto>>(sp =>
             new ProjectService(sp.GetRequiredService<IRepository<Project>>()));
-        services.AddScoped<IDetailsDtoService<ProjectDetailsDto>>(sp =>
+        services.AddScoped<IDetailsDtoService<ProjectDetailDto>>(sp =>
             new ProjectService(sp.GetRequiredService<IRepository<Project>>()));
 
         return services;
