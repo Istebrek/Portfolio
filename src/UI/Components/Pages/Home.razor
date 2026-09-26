@@ -11,6 +11,11 @@
         @summary.Description
         @summary.Id
     }
+
+    @foreach(var detail in projectDetails)
+    {
+        @detail.Id <br /> @detail.DemoUrl <br /> @detail.Title
+    }
 </div>
 
 @code {
@@ -21,6 +26,7 @@
     private IListHandler? ListHandler { get; set; }
 
     private List<ProjectSummaryDto> projectSummaries { get; set; } = [];
+    private List<ProjectDetailDto> projectDetails { get; set; } = [];
 
     protected override void OnInitialized()
     {
@@ -40,6 +46,7 @@
     public void SetLists()
     {
         projectSummaries = ListHandler!.ProjectSummaries ?? [];
+        projectDetails = ListHandler!.ProjectDetails ?? [];
         StateHasChanged();
     }
 
