@@ -52,7 +52,7 @@
 
 <!-- Footer Content -->
 <data name="ResumeDownloadTitle" xml:space="preserve">
-    <value>Download Resume</value>
+    <value>Open Resume</value>
 </data>
 
 <data name="ResumeDownloadButtonText" xml:space="preserve">

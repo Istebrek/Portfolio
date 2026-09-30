@@ -54,7 +54,7 @@
 
 <!-- Footer Content -->
 <data name="ResumeDownloadTitle" xml:space="preserve">
-    <value>Ladda ner CV</value>
+    <value>Öppna CV</value>
 </data>
 
 <data name="ResumeDownloadButtonText" xml:space="preserve">

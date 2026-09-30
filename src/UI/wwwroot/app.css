@@ -78,7 +78,6 @@ h1:focus {
 }
 
 .accordion{
-    border-color: #f89b82;;
     box-shadow: none;
     --bs-accordion-border-color: #444;
 }
@@ -99,4 +98,11 @@ line-height: 1;
 
 .pill-link:hover{
     background-color: #f89b82 !important;
+}
+
+.resume-button:hover {
+    transform: scale(1.06);
+    background-color: #f89b82 !important;
+    color: black;
+    font-weight: bolder;
 }
