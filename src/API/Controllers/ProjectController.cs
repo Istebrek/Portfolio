@@ -40,9 +40,24 @@ public class ProjectController
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddProject([FromBody]Project project)
+    public async Task<IActionResult> AddProject([FromBody] Project project)
     {
         entityService.Add(project);
         return Ok();
     }
+
+    [HttpPatch("entity/{id}")]
+    public async Task<IActionResult> UpdateProject(string id, [FromBody] Project project)
+    {
+        await entityService.UpdateAsync(id, project);
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProject(string id)
+    {
+        await entityService.DeleteAsync(id);
+        return NoContent();
+    }
+
 }

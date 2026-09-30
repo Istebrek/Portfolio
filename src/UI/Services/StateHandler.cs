@@ -4,7 +4,7 @@ using Shared.Lists;
 namespace UI.Services;
 
 public class StateHandler(
-    IListHandler listHandler,
+    IObjectStore objectStore,
     ProtectedLocalStorage localStorage
 ) : IStateHandler
 {
@@ -17,11 +17,12 @@ public class StateHandler(
         var result = await localStorage.GetAsync<Language>("selectedLanguage");
         await SelectLanguage(result.Success ? result.Value : Language.Swedish);
     }
+
     public async Task SelectLanguage(Language language)
     {
         CurrentLanguage = language;
         await localStorage.SetAsync("selectedLanguage", CurrentLanguage);
-        await listHandler.GetAllData(CurrentLanguage);
+        await objectStore.GetAllObjects(CurrentLanguage);
 
         OnChange?.Invoke();
     }

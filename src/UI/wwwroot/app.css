@@ -3,7 +3,13 @@ html, body {
 }
 
 a, .btn-link {
-    color: #006bb7;
+    color: #93CDEF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #6a97b1;
+    text-decoration: none;
 }
 
 .btn-primary {
@@ -57,4 +63,40 @@ h1:focus {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.1rem rgba(255,255,255,.25);
+    /* outline: none !important; */
+}
+
+.accordion-button:not(.collapsed) {
+    box-shadow: none !important;
+    background-color: #b4b4b4;
+    color: black;
+    font-weight: bold;
+}
+
+.accordion{
+    border-color: #f89b82;;
+    box-shadow: none;
+    --bs-accordion-border-color: #444;
+}
+
+.carousel-item img {
+border-radius: 1rem;
+}
+
+.bi { /*bootstrap icon adjust baseline*/
+line-height: 1;
+}
+
+    @media (min-width: 576px) {
+        .cme-3{
+            margin-inline-end: 1rem;
+        }
+    }
+
+.pill-link:hover{
+    background-color: #f89b82 !important;
 }

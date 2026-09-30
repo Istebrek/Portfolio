@@ -1,0 +1,183 @@
+@page "/projects/{ProjectId}"
+@using System.Reflection.Metadata
+@inject NavigationManager NavigationManager
+<PageTitle>Project Details</PageTitle>
+
+@if (Details is not null)
+{
+    <div class="row mb-1 p-0">
+        <div class="col-7 g-3">
+            <h5 class="m-0 p-0" style="font-weight: bold;">Project: @Details.Title</h5>
+        </div>  
+        <div class="col-5 text-end g-3">
+            <a href="@Details.GitHubUrl" target="_blank" class="icon-link icon-link-hover cme-3" >
+                <span><strong>Visa källkod </strong></span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="@Details.DemoUrl" target="_blank" class="icon-link icon-link-hover">
+                <span><strong>Visa demo </strong></span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card shadow bg-dark">
+        <div class="row g-2 justify-content-evenly">
+            <div class="col-12 col-sm-6">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active p-2 py-3">
+                            @if (Details?.ImagePaths is List<string> images && images.Count > 0)
+                            {
+                                <img src="@images[0]" class="rounded-2 d-block w-100" alt="Project Demo landing page image">
+                            }
+                        </div>
+                        @foreach (var image in Details?.ImagePaths?.Skip(1) ?? [])
+                        {
+                            <div class="carousel-item p-2 py-3">
+                                <img src="@image" class="rounded-2 d-block w-100" alt="Project Demo image">
+                            </div>
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon shadow  " aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon shadow" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <div class="d-flex flex-row flex-wrap gap-1 justify-content-evenly p-2 mb-sm-3">
+                    @foreach(var skill in Details.Skills)
+                    {
+                        <span class="badge rounded-pill me-1" 
+                                    style="background-color: #93CDEF; color: #1B1A1F;" >
+                            @skill.SkillDisplay()
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6">
+                <div class="accordion p-2 py-3" id="accordionPanelsStayOpen">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                Details
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body">
+                                <span>
+                                    @Details.Description
+                                </span>
+                            </div>
+                            @if(Details.Collaborators?.Count > 0)
+                            {
+                                <div  class="accordion-body">
+                                    <span>
+                                        <strong>
+                                            Built with:
+                                        </strong>
+                                    </span>
+                                    @foreach(var collaborator in Details.Collaborators)
+                                    {
+                                        <a href="@(collaborator.Substring(collaborator.IndexOf(':')+1))" target="_blank" >
+                                            <span class="rounded-pill badge me-1 text-white pill-link"
+                                                    style="background-color: #77848c; color: #1B1A1F;" >
+                                                @collaborator.Split(':')[0]
+                                            </span>
+                                        </a>
+                                    }
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                    @* <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="accordion-body">
+                                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                        </div>
+                    </div> *@
+                    @if (Details.Instructions is not null)
+                    {
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                    Instructions
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
+                                <div class="accordion-body">
+                                    <span>
+                                        @Details.Instructions
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code{
+    [Parameter] public string? ProjectId { get; set; }
+
+    [Inject]
+    private IStateHandler? StateHandler { get; set; }
+
+    [Inject]
+    private IObjectStore? ObjectStore { get; set; }
+
+    private ProjectDetailDto? Details { get; set; }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        ProjectId ??= new Uri(NavigationManager.Uri).Segments.Last().TrimEnd("/").ToString();
+        StateHandler!.OnChange += StateHasChanged;
+        ObjectStore!.OnChange += UpdateObject;
+    }
+
+    protected async override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (!Enum.IsDefined<Language>(StateHandler!.CurrentLanguage))
+            {
+                await StateHandler!.InitializeAsync();
+            }
+            ProjectId ??= new Uri(NavigationManager.Uri).Segments.Last().TrimEnd("/").ToString();
+            await SetObject(); 
+        }
+    }
+
+    public void UpdateObject()
+    {
+        Details = ObjectStore!.CurrentProjectDetail;
+        StateHasChanged();
+    }
+
+    private async Task SetObject()
+    {
+        await ObjectStore!.GetProjectDetails(StateHandler!.CurrentLanguage, ProjectId);
+        UpdateObject();
+    }
+
+    public void Dispose()
+    {
+        StateHandler!.OnChange -= StateHasChanged;
+        ObjectStore!.OnChange -= StateHasChanged;
+    }
+}

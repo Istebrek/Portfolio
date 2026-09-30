@@ -10,7 +10,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddScoped<IStateHandler, StateHandler>();
-builder.Services.AddScoped<IListHandler, ListHandler>();
+builder.Services.AddScoped<IObjectStore, ObjectStore>();
 
 var app = builder.Build();
 

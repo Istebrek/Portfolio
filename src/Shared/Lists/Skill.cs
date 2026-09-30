@@ -233,5 +233,8 @@ public enum Skill
     DNS,
 
     [Description("IP")]
-    IP
+    IP,
+
+    [Description("AI")]
+    AI
 }

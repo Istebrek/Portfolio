@@ -1,0 +1,35 @@
+<h2 class="card-title mb-1 p-0" style="font-weight: bold;">Project Spotlight</h2>
+<div class="row g-2 justify-content-evenly">
+    @foreach(var summary in projectSummaries.Take(3))
+    {
+        <div class="col-sm-6 col-12 col-lg-4">
+            <a href="@($"/projects/{summary.Id}")"
+                    class="card bg-dark text-white  project-card h-100"
+                    style="text-decoration: none;"
+                    title="View project" > <!--TODO: use translation object to show in correct language -->
+                <img src="@(summary.ThumbnailPath)"
+                        class="card-img p-2" 
+                        alt="Demo thumbnail image" 
+                        style="text-decoration: none;">
+                <div class="card-img-overlay d-flex flex-column justify-content-end"
+                        style="background: linear-gradient(to top, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%);" >
+                    <h6 class="card-title" style="font-weight: bold;">@(summary.Title) </h6>
+                    <p class="card-text"
+                            style="font-size: x-small;" >
+                        @(string.Join(" ", summary.Description!.Split(' ').Take(6)) + "...")
+                    </p>
+                    <div class="d-flex flex-row flex-wrap gap-1">
+                        @foreach(var skill in @summary.Skills!.Skip(1).Take(5))
+                        {
+                            <span class="badge rounded-pill me-1" 
+                                    style="background-color: #93CDEF; color: #1B1A1F; font-weight: lighter; font-size: xx-small;" >
+                                @skill.SkillDisplay()
+                            </span>
+                        }
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+
+</div>

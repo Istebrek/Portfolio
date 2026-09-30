@@ -21,4 +21,5 @@ public class ProjectTranslation
     public required Language Language { get; set; }
     public required string Title { get; set; }
     public string? Description { get; set; }
+    public string? Instructions { get; set; }
 }

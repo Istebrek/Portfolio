@@ -76,6 +76,7 @@ public class ProjectService(IRepository<Project> repo) : IEntityService<Project>
             project.Id.ToString(),
             translation.Title,
             translation.Description,
+            translation.Instructions,
             project.GitHubUrl,
             project.DemoUrl,
             project.Collaborators,

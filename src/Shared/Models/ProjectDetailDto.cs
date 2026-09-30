@@ -6,6 +6,7 @@ public record ProjectDetailDto(
     string Id,
     string Title,
     string? Description,
+    string? Instructions,
     string? GitHubUrl,
     string? DemoUrl,
     List<string>? Collaborators,

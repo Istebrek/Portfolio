@@ -15,7 +15,7 @@
     public IStateHandler? StateHandler { get; set; }
 
     [Inject]
-    public IListHandler? ListHandler { get; set; }
+    public IObjectStore? ObjectStore { get; set; }
 
     private Language SelectedLanguage { get; set; } = Language.Swedish;
     private string ButtonTitle { get; set; } = "Change to EN";
