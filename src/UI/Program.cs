@@ -1,8 +1,11 @@
 using UI.Components;
 using UI.Extensions;
+using UI.Resources;
 using UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<SharedTextService>();
 
 builder.Services.AddClients(builder.Configuration);
 

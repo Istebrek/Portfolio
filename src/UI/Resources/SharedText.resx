@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+
+
+<!-- HeaderContent -->
+<data name="LanguageButtonTitle" xml:space="preserve">
+    <value>Byt språk till Svenska</value>
+</data>
+
+<!-- Project Summary -->
+<data name="ProjectSpotlightTitle" xml:space="preserve">
+    <value>Project Spotlight</value>
+</data>
+
+<data name="ProjectNavTitle" xml:space="preserve">
+    <value>View project details for</value>
+</data>
+
+<data name="ProjectImageAlt" xml:space="preserve">
+    <value>Project thumbnail for</value>
+</data>
+
+<!-- Project Details -->
+<data name="GithubLinkTextSpan" xml:space="preserve">
+    <value>View source code</value>
+</data>
+
+<data name="DemoLinkTextSpan" xml:space="preserve">
+    <value>View demo</value>
+</data>
+
+<data name="ProjectImagesAlt" xml:space="preserve">
+    <value>demo image</value>
+</data>
+
+<data name="ProjectDetailsAccordionButton" xml:space="preserve">
+    <value>Details</value>
+</data>
+
+<data name="ProjectCollaboratorsAccordionBody" xml:space="preserve">
+    <value>Contributors</value>
+</data>
+
+<data name="ProjetUseInstructionsAccordionButton" xml:space="preserve">
+    <value>Instructions</value>
+</data>
+
+<data name="ProjectCollaboratorsLinkTitle" xml:space="preserve">
+    <value>Visit the LinkedIn profile at</value>
+</data>
+
+<data name="" xml:space="preserve">
+    <value></value>
+</data>
+
+<data name="" xml:space="preserve">
+    <value></value>
+</data>
+
+
+</root>
