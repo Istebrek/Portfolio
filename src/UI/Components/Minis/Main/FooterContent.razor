@@ -1,0 +1,47 @@
+@implements IDisposable
+
+@inject SharedTextService SharedText
+@inject NavigationManager Navigation
+
+<div class="row text-white p-3 mx-2">
+    <div class="col-6" style="">
+        <span style="font-size: smaller; color: rgb(92, 87, 87);">
+            © 2026 Istebrek Akram. .NET 10 & Blazor.
+        </span>
+    </div>
+
+    <div class="col-6 text-end" style="font-size: smaller; color: rgb(92, 87, 87);">
+        <a href="https://www.linkedin.com/in/istebrekakram/" class="mx-2"
+                title="https://www.linkedin.com/in/istebrekakram/">
+        
+        LinkedIn</a>
+        <a href="https://github.com/Istebrek?tab=repositories" class="mx-2" 
+                title="https://github.com/Istebrek?tab=repositories">
+            GitHub</a>
+        <button class="btn rounded-5 mx-2 px-3 text-white py-1"
+                style="border: 1px solid #f89b82; font-size: small; font-weight: bold;"
+                title="@(SharedText.Get("ResumeDownloadTitle"))">
+            <a href="resources/Istebrek-Akram_Resume.pdf" target="_blank" style="color: white;"
+                title="@(SharedText.Get("ResumeDownloadTitle"))">
+
+                @SharedText.Get("ResumeDownloadButtonText")
+            </a>
+        </button>
+    </div>
+
+</div>
+
+@code {
+    [Inject]
+    public IStateHandler? StateHandler { get; set; }
+
+    protected override void OnInitialized()
+    {
+        StateHandler!.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        StateHandler!.OnChange -= StateHasChanged;
+    }
+}

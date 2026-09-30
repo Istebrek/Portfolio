@@ -2,7 +2,7 @@
 <root>
 
 
-<!-- HeaderContent -->
+<!-- Header Content -->
 <data name="LanguageButtonTitle" xml:space="preserve">
     <value>Change language to English</value>
 </data>
@@ -49,6 +49,16 @@
 
 <data name="ProjectCollaboratorsLinkTitle" xml:space="preserve">
     <value>Gå till LinkedIn-profilen på</value>
+</data>
+
+
+<!-- Footer Content -->
+<data name="ResumeDownloadTitle" xml:space="preserve">
+    <value>Ladda ner CV</value>
+</data>
+
+<data name="ResumeDownloadButtonText" xml:space="preserve">
+    <value>CV</value>
 </data>
 
 <data name="" xml:space="preserve">
