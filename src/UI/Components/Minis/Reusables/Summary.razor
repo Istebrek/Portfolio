@@ -1,10 +1,19 @@
 @inject SharedTextService SharedText
 
-<h2 class="card-title mb-1 p-0" style="font-weight: bold;">@SharedText.Get("ProjectSpotlightTitle")</h2>
+<div class="d-flex align-items-center my-2">
+    <hr class="flex-grow-1" />
+
+    <h4 class="mx-4 mb-0 fw-bold">
+        @SharedText.Get("ProjectSpotlightTitle")
+    </h4>
+
+    <hr class="flex-grow-1" />
+</div>
 <div class="row g-2 justify-content-evenly">
+    
     @foreach(var summary in projectSummaries.Take(3))
     {
-        <div class="col-sm-6 col-12 col-lg-4">
+        <div class="col-sm-6 col-12 col-lg-3">
             <a href="@($"/projects/{summary.Id}")"
                     class="card bg-dark text-white  project-card h-100"
                     style="text-decoration: none;"

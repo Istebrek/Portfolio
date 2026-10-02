@@ -87,12 +87,22 @@ border-radius: 1rem;
 }
 
 .bi { /*bootstrap icon adjust baseline*/
-line-height: 1;
+    line-height: 1;
 }
 
     @media (min-width: 576px) {
         .cme-3{
             margin-inline-end: 1rem;
+        }
+        .header-title {
+            font-size: large;
+        }
+    }
+    
+    
+    @media (max-width: 576px) {
+        .header-title {
+            font-size: smaller;
         }
     }
 
@@ -105,4 +115,40 @@ line-height: 1;
     background-color: #f89b82 !important;
     color: black;
     font-weight: bolder;
+}
+
+.profile-border {
+    width: 220px;
+    height: 220px;
+    padding: 5px;
+    border-radius: 50%;
+    background: linear-gradient(
+    135deg,
+        #6a97b1 0%,
+        #f89b82 100%
+    );
+    display: inline-flex;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (min-width: 1025px) {
+    .intro-text{
+        max-width:70vw;
+        margin-inline-end: 18rem !important;
+    }
+}
+@media (max-width: 426px) {
+    .intro-font{
+        font-size: 30px !important;
+    }
+
+    .mobile-align{
+        text-align: center;
+    }
 }

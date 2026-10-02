@@ -1,22 +1,9 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="container-fluid p-0">
-    <div class="bg-black min-vh-100 p-0 m-0 d-flex flex-column">
-        <header class="p-4 bg-black text-light">
-            <div class="row">
-                <div class="col text-start">
-                    <button class="btn m-0 p-0">
-                        <a href="/">
-                            <img src="images/logo.svg" 
-                                    class="rounded-3"
-                                    style="width:30px; height:30px; border: 2px solid #f89b82;" />
-                        </a>
-                    </button>
-                </div>
-                <div class="col text-end">
-                    <HeaderContent />
-                </div>
-            </div>
+    <div class="bg-black min-vh-100 p-0 px-4 m-0 d-flex flex-column">
+        <header class="bg-black text-light header-padding">
+            <HeaderContent />
         </header>
 
         <main class="bg-white rounded-5 flex-fill overflow-auto">

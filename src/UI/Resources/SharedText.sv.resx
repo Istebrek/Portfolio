@@ -7,6 +7,9 @@
     <value>Change language to English</value>
 </data>
 
+<data name="HeaderTitle" xml:space="preserve">
+    <value>Istebreks Portfolio</value>
+</data>
 
 <!-- Project Summary -->
 <data name="ProjectSpotlightTitle" xml:space="preserve">
@@ -61,8 +64,26 @@
     <value>CV</value>
 </data>
 
-<data name="" xml:space="preserve">
-    <value></value>
+
+<!-- Intro Section -->
+<data name="IntroductionText" xml:space="preserve">
+    <value>Hej, jag är Istebrek. Kul att du är här!</value>
+</data>
+
+<data name="DeveloperRoleTitle" xml:space="preserve">
+    <value>.NET Systemutvecklare &amp; Azure molnarkitekt</value>
+</data>
+
+<data name="DetailedIntroText" xml:space="preserve">
+    <value>Jag designar, utvecklar, testar och driftsätter mjukvara och system som går att förlita sig på. Jag brinner för problemlösningsprocessen och att leverera hållbara, skalbara och säkra system.</value>
+</data>
+
+<data name="ProfilePhotoImageAlt" xml:space="preserve">
+    <value>Profilbild</value>
+</data>
+
+<data name="ResumePath" xml:space="preserve">
+    <value>resources/Istebrek-Akram_CV.pdf</value>
 </data>
 
 <data name="" xml:space="preserve">

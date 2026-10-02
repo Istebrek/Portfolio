@@ -3,7 +3,7 @@
 @inject SharedTextService SharedText
 @inject NavigationManager Navigation
 
-<div class="row text-white p-3 mx-2">
+<div class="row text-white py-3">
     <div class="col-6" style="">
         <span style="font-size: smaller; color: rgb(92, 87, 87);">
             © 2026 Istebrek Akram. .NET 10 & Blazor.
@@ -24,9 +24,9 @@
         <button class="btn rounded-5 mx-2 px-3 text-white py-1 resume-button"
                 style="border: 1px solid #f89b82; font-size: small; font-weight: bold;"
                 title="@(SharedText.Get("ResumeDownloadTitle"))">
-            <a href="resources/Istebrek-Akram_Resume.pdf" target="_blank" style="color: white;"
+            <a href="@(SharedText.Get("ResumePath"))" target="_blank" style="color: white;"
                 title="@(SharedText.Get("ResumeDownloadTitle"))">
-                @SharedText.Get("ResumeDownloadButtonText")
+                    @SharedText.Get("ResumeDownloadButtonText")
             </a>
         </button>
     </div>
@@ -47,9 +47,3 @@
         StateHandler!.OnChange -= StateHasChanged;
     }
 }
-
-<script>
-    .resume-button:hover{
-        transform: scale(1.06);
-    }
-</script>

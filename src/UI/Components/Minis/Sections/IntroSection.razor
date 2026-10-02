@@ -1,0 +1,45 @@
+@implements IDisposable
+@inject SharedTextService SharedText
+@inject IStateHandler StateHandler
+
+
+<div class="row justify-content-evenly my-4">
+    <div class="col-12 col-sm-4 text-center">
+        <div class="profile-border">
+            <img src="/resources/pp.jpg" alt="@(SharedText.Get("ProfilePhotoImageAlt"))" 
+                    class="profile-image" />
+
+        </div>
+    </div>
+
+
+    <div class="col-12 col-sm-8 mobile-align">
+        <div class="mb-2">
+            <span style="color: #f89b82; font-weight: bold;">
+                @(SharedText.Get("IntroductionText"))
+            </span>
+        </div>
+        <div class="intro-text">
+            <span class="intro-font" style="line-height: 110%; color: #black; font-weight: bold; font-size: 48px;">
+                @(SharedText.Get("DeveloperRoleTitle"))
+            </span>
+        </div>
+        <div class="intro-text">
+            <span style="color: #black; font-size: small;">
+                @(SharedText.Get("DetailedIntroText"))
+            </span>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        StateHandler.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        StateHandler.OnChange -= StateHasChanged;
+    }
+}
