@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+COPY Portfolio.slnx .
+COPY UI/UI.csproj UI/
+COPY Shared/Shared.csproj Shared/
+
+RUN dotnet restore UI/UI.csproj
+
+COPY . .
+
+RUN dotnet publish UI/UI.csproj -c Release -o /app
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+WORKDIR /app
+COPY --from=build /app .
+
+ENV ASPNETCORE_ENVIRONMENT=Production
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "UI.dll"]
